@@ -5,7 +5,7 @@ Home: https://github.com/NOAA-ORR-ERD/cell_tree2d
 
 Package license: Public Domain
 
-Feedstock license: BSD
+Feedstock license: BSD 3-Clause
 
 Summary: CellTree data structure as described by Garth and Joy 2010
 
@@ -69,9 +69,10 @@ Terminology
 
 Current build status
 ====================
+
 Linux: [![Circle CI](https://circleci.com/gh/conda-forge/cell_tree2d-feedstock.svg?style=svg)](https://circleci.com/gh/conda-forge/cell_tree2d-feedstock)
 OSX: [![TravisCI](https://travis-ci.org/conda-forge/cell_tree2d-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/cell_tree2d-feedstock) 
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/cell_tree2d-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/cell_tree2d-feedstock/branch/master)
+Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/cell-tree2d-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/cell-tree2d-feedstock/branch/master)
 
 Current release info
 ====================
