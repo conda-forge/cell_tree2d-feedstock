@@ -24,8 +24,13 @@ requirements:
         - numpy x.x
 
 test:
+    requires:
+        - pytest
     imports:
         - cell_tree2d
+    commands:
+        - py.test --pyargs cell_tree2d 
+
 
 about:
     home: https://github.com/NOAA-ORR-ERD/cell_tree2d
