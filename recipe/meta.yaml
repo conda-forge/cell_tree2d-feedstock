@@ -30,6 +30,7 @@ test:
         - cell_tree2d
     commands:
         - py.test --pyargs cell_tree2d
+        - conda inspect linkages -n _test cell_tree2d  # [linux]
 
 about:
     home: https://github.com/NOAA-ORR-ERD/cell_tree2d
