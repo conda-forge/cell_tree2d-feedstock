@@ -1,45 +1,45 @@
 {% set version = "0.3.0" %}
 
 package:
-    name: cell_tree2d
-    version: {{ version }}
+  name: cell_tree2d
+  version: {{ version }}
 
 source:
-    fn: cell_tree2d-{{ version }}-.tar.gz
-    url: https://github.com/NOAA-ORR-ERD/cell_tree2d/archive/v{{ version }}.tar.gz
-    sha256: 4a5759951f67a3ff199137c87bb565b1897541130de5a4a2067acb22b0f39bae
+  fn: cell_tree2d-{{ version }}-.tar.gz
+  url: https://github.com/NOAA-ORR-ERD/cell_tree2d/archive/v{{ version }}.tar.gz
+  sha256: 4a5759951f67a3ff199137c87bb565b1897541130de5a4a2067acb22b0f39bae
 
 build:
-    number: 0
-    script: python setup.py install --single-version-externally-managed --record record.txt
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
-    build:
-        - python
-        - setuptools
-        - cython
-        - numpy x.x
-    run:
-        - python
-        - numpy x.x
+  build:
+    - python
+    - setuptools
+    - cython
+    - numpy x.x
+  run:
+    - python
+    - numpy x.x
 
 test:
-    requires:
-        - pytest
-    imports:
-        - cell_tree2d
-    commands:
-        - py.test --pyargs cell_tree2d
-        - conda inspect linkages -n _test cell_tree2d  # [linux]
+  requires:
+    - pytest
+  imports:
+    - cell_tree2d
+  commands:
+    - py.test --pyargs cell_tree2d
+    - conda inspect linkages -p $PREFIX cell_tree2d  # [not win]
+    - conda inspect objects -p $PREFIX cell_tree2d  # [osx]
 
 about:
-    home: https://github.com/NOAA-ORR-ERD/cell_tree2d
-    license: Public Domain
-    summary: CellTree data structure as described by Garth and Joy 2010
+  home: https://github.com/NOAA-ORR-ERD/cell_tree2d
+  license: Public Domain
+  summary: 'CellTree data structure as described by Garth and Joy 2010.'
 
 extra:
-    recipe-maintainers:
-        - ocefpaf
-        - ChrisBarker-NOAA
-        - jay-hennen 
-        
+  recipe-maintainers:
+    - ocefpaf
+    - ChrisBarker-NOAA
+    - jay-hennen

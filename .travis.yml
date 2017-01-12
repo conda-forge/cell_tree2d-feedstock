@@ -1,7 +1,10 @@
 # This file was generated automatically from conda-smithy. To update this configuration,
-# update the conda-forge.yaml and/or the recipe/meta.yaml.
+# update the conda-forge.yml and/or the recipe/meta.yaml.
 
-language: objective-c
+language: generic
+
+os: osx
+osx_image: beta-xcode6.1
 
 env:
   matrix:
@@ -12,6 +15,8 @@ env:
     - CONDA_NPY=111  CONDA_PY=34
     - CONDA_NPY=110  CONDA_PY=35
     - CONDA_NPY=111  CONDA_PY=35
+    - CONDA_NPY=110  CONDA_PY=36
+    - CONDA_NPY=111  CONDA_PY=36
   global:
     # The BINSTAR_TOKEN secure variable. This is defined canonically in conda-forge.yml.
     - secure: "tyDjQ6mVruV/OYsOYzJ4gZHrzq+WsFVtnuCXxhJ/idq/qOqI73tMax+hSqyGfaKaisJOF9H0uIl3M+PzeIY8+aqc0ASo6/4BtCtzQ2Q8egSBjUt3rv3MqSd2V/7cd2Zb8yuO08KB7U5phuhyk4Oc3j4JEclbcNVX+kR2kVxc+9xi0zQJe1hIagNwq9J9LUsdu9ssQFh2eSK7Rfh4dob1wEFO4A52XWAH5nFXKgZOsR3CW819n9V16MtlzMIpuXvTG8I0QU2HpQ4ZWoWov8+9qZA7T2y1clCCfktagbsistJVUN9AtMYf3nqW8KOazAP3kC8CUPQwn8USL6KGCiwDfILDzjcCWWRbPyQjGwiDYmPnbD9qT2VdfRAF+CXJ3glF/pu9yKmyhVMb7cItwCEAEHfVdKUMtlxZq2tVPgQu/6WZ+75TlugH3COqnIobeJ5lRrEAXbRNWMmFZIVAB69OTYDojGYZRlss2dxm1bRUKmrgh9dFXr4bXyoHP95oIN5BA3bohW7i361fFhYkODbIx3mO3WmlsXuFZtv1nFJyHYaYApxMxO8Y9FjaeUw7RWhLFNeYSuBP+YScnRvEIMBpqVRNJpZtUq/XIeLIBTXGW8z67E4ujbdzddfBOipMlFn19lbVXSr6X6wWhbPZoMhKIXoJdEyRaw3OzecFZKqHDx4="
@@ -25,12 +30,14 @@ before_install:
 
 install:
     - |
-      MINICONDA_URL="http://repo.continuum.io/miniconda"
+      MINICONDA_URL="https://repo.continuum.io/miniconda"
       MINICONDA_FILE="Miniconda3-latest-MacOSX-x86_64.sh"
-      curl -O "${MINICONDA_URL}/${MINICONDA_FILE}"
+      curl -L -O "${MINICONDA_URL}/${MINICONDA_FILE}"
       bash $MINICONDA_FILE -b
 
-      export PATH=/Users/travis/miniconda3/bin:$PATH
+      source /Users/travis/miniconda3/bin/activate root
+      conda config --remove channels defaults
+      conda config --add channels defaults
       conda config --add channels conda-forge
       conda config --set show_channel_urls true
       conda install --yes --quiet conda-forge-build-setup
@@ -39,6 +46,4 @@ install:
 script:
   - conda build ./recipe
 
-after_success:
-
-  - ./ci_support/upload_or_check_non_existence.py ./recipe conda-forge --channel=main
+  - upload_or_check_non_existence ./recipe conda-forge --channel=main
