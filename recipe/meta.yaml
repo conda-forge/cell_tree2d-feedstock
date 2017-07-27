@@ -5,12 +5,11 @@ package:
   version: {{ version }}
 
 source:
-  fn: cell_tree2d-{{ version }}-.tar.gz
   url: https://github.com/NOAA-ORR-ERD/cell_tree2d/archive/v{{ version }}.tar.gz
   sha256: 4a5759951f67a3ff199137c87bb565b1897541130de5a4a2067acb22b0f39bae
 
 build:
-  number: 0
+  number: 1
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
@@ -18,10 +17,14 @@ requirements:
     - python
     - setuptools
     - cython
-    - numpy x.x
+    - numpy 1.7.*  # [py27]
+    - numpy 1.9.*  # [py35]
+    - numpy 1.11.*  # [py36]
   run:
     - python
-    - numpy x.x
+    - numpy >=1.7  # [py27]
+    - numpy >=1.9  # [py35]
+    - numpy >=1.11  # [py36]
 
 test:
   requires:
