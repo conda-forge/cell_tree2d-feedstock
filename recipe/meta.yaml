@@ -32,8 +32,6 @@ test:
     - cell_tree2d
   commands:
     - py.test --pyargs cell_tree2d
-    - conda inspect linkages -p $PREFIX cell_tree2d  # [not win]
-    - conda inspect objects -p $PREFIX cell_tree2d  # [osx]
 
 about:
   home: https://github.com/NOAA-ORR-ERD/cell_tree2d
