@@ -9,7 +9,7 @@ source:
   sha256: 4a5759951f67a3ff199137c87bb565b1897541130de5a4a2067acb22b0f39bae
 
 build:
-  number: 1008
+  number: 1009
   script: "{{ PYTHON }} -m pip install . -vv"
   skip: True  # [py<39 or python_impl == 'pypy']
 
@@ -24,6 +24,7 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - python
+    - setuptools
     - pip
     - cython
     - numpy
